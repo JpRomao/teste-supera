@@ -9,28 +9,26 @@ export const HomeContainer = styled.div`
 `;
 
 export const Main = styled.main`
-
+ section {
+   display: flex;
+   flex-direction: column;
+   padding: 0 5px;
+ }
 `;
 
-export const ItemName = styled.div`
+export const OrderOptions = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  div:first-child {
+    margin-right: 6px;
+  }
+  margin-bottom: 8px;
+`;
+
+export const ProductsContainer = styled.div`
   display: grid;
-  grid-template-areas: 'select name price score';
-
-  strong {
-    text-align: center;
-    border: 1px solid #000;
-    border-collapse: collapse;
-  }
-
-  .name {
-    grid-area: name;
-  }
-
-  .price {
-    grid-area: price;
-  }
-
-  .score {
-    grid-area: score;
-  }
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 `;

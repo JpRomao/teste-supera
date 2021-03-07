@@ -1,3 +1,4 @@
+import { StyledStrong } from "./styles";
 
 interface StrongProps {
   label: string | number;
@@ -5,7 +6,9 @@ interface StrongProps {
 }
 
 const Strong: React.FC<StrongProps> = ({label, name}) => (
-  <strong className={name}>{label}</strong>
+  <StyledStrong className={name}>
+    {label}
+  </StyledStrong>
 )
 
 export default Strong;

@@ -1,24 +1,68 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-export const InformationContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  text-align: center;
-  font-size: 1.4rem;
-  margin-top: 5px;
-  padding: 5px 0;
-  width: 100%;
-  border: 1px solid #000;
-
-  span, strong {
-    border-left: 1px solid #000;
-    height: 100%;
-    padding: 25%;
+export const FadeIn = keyframes`
+  from{
+    transform: translateY(-25px);
+    opacity: 0;
   }
-
-  @media(min-width: 960px) {
-    display: grid;
-    grid-template-columns: 1fr repeat(3, 250px);
+  to {
+    transform: translateY(0px);
+    opacity: 1;
   }
 `;
+
+export const ProductCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  text-align: center;
+  font-size: 1.4rem;
+
+  margin: 10px;
+  padding: 2px 0;
+  border: 1px solid #000;
+
+  animation: ${FadeIn} 1.2s linear;
+`;
+
+export const ItemInformation = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 94%;
+
+  border-bottom: 1px solid #c2c2c2;
+  margin-bottom: 10px;
+  padding: 5px;
+
+  >span {
+    margin-bottom: 7px;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94%;
+
+  margin: 7px 0;
+  border-bottom: 1px solid #c2c2c2;
+  padding-bottom: 10px;
+
+  img {
+    width: 100%;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+
+  button {
+    background: #FFF;
+    padding: 5px;
+  }
+`
