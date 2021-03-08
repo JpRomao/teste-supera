@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FcPrevious, FcNext } from "react-icons/fc";
+import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import Footer from "../../components/Footer";
 import Header from "../../components/Header/Header";
 
 import { Carousel, HomeContainer } from "./styles";
@@ -17,23 +19,13 @@ const Home: React.FC = () => {
     `${process.env.PUBLIC_URL}/assets/the-witcher-iii-wild-hunt.png`,
   ];
 
-  useEffect(() => {
-    setTimeout(() => {
-      if(index < 2) {
-        setIndex(index + 1);
-      }
-      else {
-        setIndex(0);
-      }
-    }, 10 * 1000);
-  }, [index]);
-
   return (
     <HomeContainer>
       <Header/>
+
       <main>
-        <h2></h2>
         <section>
+          <h2>Confira os jogos em destaque</h2>
           <Carousel>
             <Button onClick={() => {
               if(index > 0) {
@@ -59,8 +51,12 @@ const Home: React.FC = () => {
               <FcNext/>
             </Button>
           </Carousel>
+          <Link to="/Games">
+            Clique aqui para ver todo nosso catálogo agora mesmo!
+          </Link>
         </section>
       </main>
+      <Footer/>
     </HomeContainer>
   );
 };

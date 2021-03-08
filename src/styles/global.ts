@@ -23,6 +23,7 @@ export default createGlobalStyle`
     --webkit-font-smoothing: antialiased;
     padding-top: 6px;
     width: 100%;
+    height: 100%;
   }
 
   body, input, button {
@@ -37,7 +38,7 @@ export default createGlobalStyle`
     width: 100%;
   }
 
-  button {
+  button, a {
     cursor: pointer;
   }
 

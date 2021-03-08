@@ -8,7 +8,7 @@ const CartItem: React.FC<ProductsOnCartProps> = ({name, price, image, children})
   return (
     <CartItemCell>
       <span>
-        <img src={`${process.env.PUBLIC_URL}/assets/${image}`} alt="" />
+        <img src={`${process.env.PUBLIC_URL}/assets/${image}`} alt={`${name}`} />
       </span>
       <Strong
         label={name}

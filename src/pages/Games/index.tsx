@@ -15,8 +15,10 @@ import transformArrayToParams from "../../services/transformArrayToParams";
 import { CartContainer, GamesContainer, Main, OrderOptions, ProductsContainer, ProductsOnCart } from "./styles";
 
 import api from "../../services/api";
+import Footer from "../../components/Footer";
+import transformToBRL from "../../services/transformToBRL";
 
-interface ProductProps {
+export interface ProductProps {
   id: number;
   name: string;
   image: string;
@@ -35,6 +37,7 @@ export interface NewProductProps {
 };
 
 export interface ProductsOnCartProps {
+  id?: number;
   name: string;
   image: string;
   price: number;
@@ -46,6 +49,8 @@ const Games: React.FC = () => {
   const [order, setOrder] = useState<number>(1);
   const [itemsOnCart, setItemsOnCart] = useState<ProductsOnCartProps[]>([]);
   const [itemsOnCartIds, setItemsOnCartIds] = useState<string[]>([]);
+  const [price, setPrice] = useState<number>(0);
+  const [frete, setFrete] = useState(0);
 
   useEffect(() => {
     async function loadList() {
@@ -58,15 +63,7 @@ const Games: React.FC = () => {
         return newResponse.push(game);
       });
 
-      if(sorter === "name") {
-        setProducts(newResponse.sort(compare));
-      }
-      else if(sorter === "score") {
-        setProducts(newResponse.sort(compare));
-      }
-      else {
-        setProducts(newResponse.sort(compare));
-      }
+      setProducts(newResponse.sort(compare));
     }
 
     loadList();
@@ -99,14 +96,22 @@ const Games: React.FC = () => {
               {
                 itemsOnCart.map((product) =>
                   <CartItem
-                    key={product.name}
+                    key={product.id}
                     name={product.name}
                     price={product.price}
                     image={product.image}
                   >
                     <Button
                       type="button"
-                      onClick={() => setItemsOnCart(() => itemsOnCart.filter(item => item.name !== product.name))}
+                      onClick={() => {
+                          if(frete > 0){
+                            setFrete(frete - 10);
+                          }
+                          setPrice(price - product.price);
+                          setItemsOnCart(() => itemsOnCart.filter(item => item.name !== product.name));
+                          return setItemsOnCartIds(() => itemsOnCartIds.filter(item => item !== product.name));
+                        }
+                      }
                     >
                       <GiCancel/>
                     </Button>
@@ -115,9 +120,20 @@ const Games: React.FC = () => {
               }
             </div>
             <div>
-              <Link to={`/checkout/:${transformArrayToParams(itemsOnCartIds)}`}>
-                Checkout
-              </Link>
+              {
+                (price - frete) < 250
+                  ?
+                itemsOnCartIds.length >= 1 && <Link to={`/checkout/${transformArrayToParams(itemsOnCartIds)},${frete},${price}`}>Checkout</Link>
+                  :
+                itemsOnCartIds.length >= 1 && <Link to={`/checkout/${transformArrayToParams(itemsOnCartIds)},0,${price}`}>Checkout</Link>
+              }
+              {
+                (price - frete) < 250
+                  ?
+                `Preço total: ${transformToBRL(price + frete)}`
+                  :
+                `Preço total: ${transformToBRL(price)}`
+              }
             </div>
           </ProductsOnCart>
         </aside>
@@ -178,6 +194,14 @@ const Games: React.FC = () => {
                       type="submit"
                       onClick={() => {
                           if(!itemsOnCart.includes(item)) {
+                            setPrice(price + item.price);
+                            if((price - frete) < 250) {
+                              setFrete(frete + 10);
+                            }
+                            else {
+                              setFrete(0);
+                            }
+                            setItemsOnCartIds([...itemsOnCartIds, item.name]);
                             return setItemsOnCart([...itemsOnCart, item]);
                           }
                           return 'Você já adicionou esse Game ao seu carrinho!';
@@ -195,6 +219,7 @@ const Games: React.FC = () => {
           </ProductsContainer>
         </section>
       </Main>
+      <Footer/>
     </GamesContainer>
   );
 }
