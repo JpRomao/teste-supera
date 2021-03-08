@@ -1,4 +1,4 @@
-import { NewProductProps } from "../pages/Home";
+import { NewProductProps } from "../pages/Games";
 
 export default function compare(game1: NewProductProps, game2: NewProductProps) {
   if(Boolean(game1.order) === true) {

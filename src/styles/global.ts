@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   :root {
-    font-size: 62.5%;
+    font-size: 63%;
   }
 
   * {
@@ -14,10 +14,15 @@ export default createGlobalStyle`
   }
 
   body {
-    color: #000;
-    background-color: #FFF;
+    display: flex;
+    color: #FFF;
+    background-image: linear-gradient(#000222, #000261);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     --webkit-font-smoothing: antialiased;
     padding-top: 6px;
+    width: 100%;
   }
 
   body, input, button {
@@ -28,7 +33,8 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
   }
 
   button {

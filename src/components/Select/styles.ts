@@ -9,8 +9,13 @@ export const SelectBlock = styled.div`
   margin-right: 15px;
 
   select {
-    width: 65px;
-    font-size: 1.4rem;
+    color: #000;
+    width: 120px;
+    font-size: 1.6rem;
+    font-weight: bold;
     margin-left: 5px;
+    background: #FFFFFF99;
+    border-radius: 6px;
+    overflow: hidden
   }
 `;

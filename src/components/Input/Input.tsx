@@ -1,4 +1,5 @@
 import React, { InputHTMLAttributes } from 'react';
+import { InputBlock } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     name: string;
@@ -7,10 +8,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<InputProps> = ({ label, name, ...rest }) => {
     return (
-      <div>
+      <InputBlock>
         <label htmlFor={name}>{label}</label>
         <input {...rest} name={name} id={name} />
-      </div>
+      </InputBlock>
     );
 }
 

@@ -6,7 +6,7 @@ export const Head = styled.header`
   align-items: center;
   justify-content: center;
   width: 96%;
-  max-width: 962px;
+  max-width: 965px;
 
   border-bottom: 1px solid #c2c2c2;
   margin-bottom: 1.2rem;
@@ -16,10 +16,17 @@ export const Head = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     max-width: 300px;
 
-    img {
-      width: 100%;
+    >a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 70%;
+      }
     }
   }
 
